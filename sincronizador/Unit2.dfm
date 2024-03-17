@@ -46,14 +46,6 @@ object Form2: TForm2
       'select * from sincronizar')
     Left = 352
     Top = 8
-    object FDQuery1valor1: TIntegerField
-      FieldName = 'valor1'
-      Origin = 'valor1'
-    end
-    object FDQuery1valor2: TIntegerField
-      FieldName = 'valor2'
-      Origin = 'valor2'
-    end
   end
   object FDConnection1: TFDConnection
     Params.Strings = (

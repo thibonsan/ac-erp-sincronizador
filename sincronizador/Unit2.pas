@@ -19,8 +19,6 @@ type
     FDQuery1: TFDQuery;
     FDConnection1: TFDConnection;
     FDPhysPgDriverLink1: TFDPhysPgDriverLink;
-    FDQuery1valor1: TIntegerField;
-    FDQuery1valor2: TIntegerField;
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
@@ -46,8 +44,12 @@ begin
       begin
         try
           FDConnection1.StartTransaction;
+          FDQuery1.SQL.Clear;
+          FDQuery1.Open(Format('select * from %s where 1 = 1', [Req.Params['tabela']]));
           FDQuery1.LoadFromJson(Req.Body);
           FDConnection1.Commit;
+          Memo1.Lines.Add('Sincronizada a tabela ' + Req.Params['tabela']);
+          Memo1.Lines.Add(Req.Body);
           Res.Status(202);
         except
           FDConnection1.Rollback;
